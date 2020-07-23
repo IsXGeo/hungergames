@@ -5,3 +5,4 @@ api-version: 1.16
 commands:
   hg:
     description: hunger games master command
+    aliases: [hungergames]

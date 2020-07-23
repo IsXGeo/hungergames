@@ -10,6 +10,8 @@ import org.bukkit.entity.Player;
 public class pluginInfo {
     public pluginInfo(Player player){
 
+        // TODO: Find a way around the issue of requiring bungee api for chat events
+
 //        TextComponent message1 = new TextComponent("Github");
 //        TextComponent message2 = new TextComponent("Discord");
 //

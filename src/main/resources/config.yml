@@ -1,11 +1,1 @@
 Plugin Version: 1.0
-#
-# Temp Values - Don't change these
-temp:
-  world: 'zero'
-  x: 0
-  y: 0
-  z: 0
-  x2: 0
-  y2: 0
-  z2: 0

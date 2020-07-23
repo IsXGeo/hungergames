@@ -7,15 +7,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.io.Console;
-
 public class hgcmd implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         String HG = ChatColor.GRAY + "[" + ChatColor.YELLOW + "HG" + ChatColor.GRAY + "]";
-        String unknownArgue = HG + ChatColor.RED + " Unknown arguments";
+        String unknownArgue = HG + ChatColor.RED + " Insufficient arguments";
 
         if(sender instanceof Player) {
             Player player = (Player) sender;
@@ -32,13 +30,13 @@ public class hgcmd implements CommandExecutor {
             if(args[0].equalsIgnoreCase("arena")) {
                 if (args.length >= 2) {
                     if (args[1].equalsIgnoreCase("create")) {
-                        if(args.length >= 3) {
+                        if(args.length >= 4) {
                             if(StringUtils.isNumeric(args[3])){
                                 new createArena(player, args[2], Integer.parseInt(args[3]));
-                                return true;
                             }else{
                                 player.sendMessage(unknownArgue);
                             }
+                            return true;
                         }
                     }else if(args[1].equalsIgnoreCase("pos1")) {
                         new setArenaPos(player, 1);
@@ -52,10 +50,22 @@ public class hgcmd implements CommandExecutor {
                 }
                 player.sendMessage(unknownArgue);
                 return true;
-            }
-
-            if(args[0].equalsIgnoreCase("info")) {
+            }else if(args[0].equalsIgnoreCase("info")) {
                 new pluginInfo(player);
+                return true;
+            }else if(args[0].equalsIgnoreCase("addspawn")) {
+                new addSpawn(player);
+                return true;
+            }else if(args[0].equalsIgnoreCase("getspawns")) {
+                if(args.length >= 2){
+                    if(StringUtils.isNumeric(args[1])){
+                        new getSpawns(player, Integer.parseInt(args[1]));
+                    }else{
+                        player.sendMessage(unknownArgue);
+                    }
+                }else{
+                    player.sendMessage(unknownArgue);
+                }
                 return true;
             }
 

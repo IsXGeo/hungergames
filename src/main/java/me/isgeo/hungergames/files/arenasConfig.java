@@ -12,7 +12,7 @@ public class arenasConfig {
     private static File file;
     private static FileConfiguration customFile;
 
-    // Finds or generates the custom configs
+    // TODO: Find a way to load already created config files and get their data into memory
     public static void setup(String name){
 
         File arenasFolder = new File (Bukkit.getServer().getPluginManager().getPlugin("HungerGames").getDataFolder().getPath() + System.getProperty("file.separator") + "arenas");
