@@ -1,9 +1,6 @@
 package me.isgeo.hungergames.commands;
 
-import com.ibm.oti.shared.SharedClassesNamedPermission;
-import me.isgeo.hungergames.HungerGames;
 import me.isgeo.hungergames.files.arenasConfig;
-import me.isgeo.hungergames.files.checkBounds;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
