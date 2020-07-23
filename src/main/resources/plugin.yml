@@ -1,0 +1,7 @@
+name: HungerGames
+version: ${project.version}
+main: me.isgeo.hungergames.HungerGames
+api-version: 1.16
+commands:
+  hg:
+    description: hunger games master command
