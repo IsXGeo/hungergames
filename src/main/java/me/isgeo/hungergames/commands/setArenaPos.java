@@ -1,16 +1,14 @@
 package me.isgeo.hungergames.commands;
 
-import me.isgeo.hungergames.HungerGames;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 import java.text.DecimalFormat;
 
 public class setArenaPos {
 
-    private static DecimalFormat df = new DecimalFormat("0.0");
+    private static final DecimalFormat df = new DecimalFormat("0.0");
 
     public static World world;
     public static Double x1;

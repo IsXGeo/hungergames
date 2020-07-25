@@ -26,8 +26,7 @@ public class hgcmd implements CommandExecutor {
             if(args[0].equalsIgnoreCase("help")) {
                 new help(player);
                 return true;
-            }
-            if(args[0].equalsIgnoreCase("arena")) {
+            }else if(args[0].equalsIgnoreCase("arena")) {
                 if (args.length >= 2) {
                     if (args[1].equalsIgnoreCase("create")) {
                         if(args.length >= 4) {
@@ -54,21 +53,9 @@ public class hgcmd implements CommandExecutor {
                 new pluginInfo(player);
                 return true;
             }else if(args[0].equalsIgnoreCase("addspawn")) {
-                new addSpawn(player);
-                return true;
-            }else if(args[0].equalsIgnoreCase("getspawns")) {
-                if(args.length >= 2){
-                    if(StringUtils.isNumeric(args[1])){
-                        new getSpawns(player, Integer.parseInt(args[1]));
-                    }else{
-                        player.sendMessage(unknownArgue);
-                    }
-                }else{
-                    player.sendMessage(unknownArgue);
-                }
-                return true;
+                    new addSpawn(player);
+                    return true;
             }
-
             player.sendMessage(unknownArgue);
             return true;
         }else{

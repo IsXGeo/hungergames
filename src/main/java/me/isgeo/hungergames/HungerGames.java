@@ -1,8 +1,8 @@
 package me.isgeo.hungergames;
 
 import me.isgeo.hungergames.commands.hgcmd;
+import me.isgeo.hungergames.files.arenasConfig;
 import org.bukkit.event.Listener;
-
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -16,6 +16,8 @@ public final class HungerGames extends JavaPlugin implements Listener {
 
         getConfig().options().copyDefaults();
         saveDefaultConfig();
+
+        arenasConfig.load();
 
     }
 

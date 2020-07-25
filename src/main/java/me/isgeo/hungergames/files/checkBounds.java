@@ -1,17 +1,46 @@
 package me.isgeo.hungergames.files;
 
-import me.isgeo.hungergames.commands.createArena;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.bukkit.util.BoundingBox;
+import org.bukkit.util.Vector;
 
 public class checkBounds {
 
-    public checkBounds() {
-        int arenas = createArena.arenaList.size();
+    public static boolean arenaContainLocation(String name, Location location) {
+        double x = location.getX();
+        double y = location.getY();
+        double z = location.getZ();
+
+        BoundingBox value = arenasConfig.arenaBoxList.get(name);
+
+        System.out.println("checkBounds | " + value);
+
+        for (BoundingBox ignored : arenasConfig.arenaBoxList.values()){
+            if(value.contains(x, y, z)){
+                return true;
+            }
+        }
+        return false;
     }
 
-    public static boolean arenaBox(Double x, Double y, Double z) {
-        return createArena.arenaBox.contains(x, y, z);
+    public static String getArenaName(Player player) {
 
+        Location playerLoc = new Location(player.getLocation().getWorld(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ());
+        Vector playerVec = playerLoc.toVector();
+
+        for (BoundingBox value : arenasConfig.arenaBoxList.values()){
+            if(value.contains(playerVec)){
+                for (String ignored : arenasConfig.arenaBoxListR.values()){
+                    return arenasConfig.arenaBoxListR.get(value);
+                }
+            }
+        }
+        return null;
     }
+//    public static boolean arenaOverlap(){
+//        return createArena.arenaBox.overlaps(arenaList);
+//    }
 
     // TODO: Add checks to ensure that arena boundaries do not overlap
 
