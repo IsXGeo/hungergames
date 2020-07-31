@@ -46,6 +46,7 @@ public class createArena {
             arenasConfig.arenaBoxList.put(name, arenaBox);
             arenasConfig.arenaBoxListR.put(arenaBox, name);
 
+
             System.out.println("Created new Arena |" + arenasConfig.arenaBoxList.size() + " | " + ChatColor.YELLOW + name + ChatColor.GRAY + " | With bounds " + arenaBox);
 
         }else{

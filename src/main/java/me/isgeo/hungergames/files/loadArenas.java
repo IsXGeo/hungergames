@@ -23,9 +23,6 @@ public class loadArenas {
         Location corner1 = arena.getLocation("bounds.corner1");
         Location corner2 = arena.getLocation("bounds.corner2");
 
-        //String apple = "1";
-
-        //arena.getLocation("spawn." + apple);
 
         assert strWorld != null;
         World world = Bukkit.getWorld(strWorld);
