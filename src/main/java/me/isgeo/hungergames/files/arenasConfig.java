@@ -1,6 +1,7 @@
 package me.isgeo.hungergames.files;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.util.BoundingBox;
@@ -17,8 +18,13 @@ public class arenasConfig {
     private static final File arenasFolder = new File (Bukkit.getServer().getPluginManager().getPlugin("HungerGames").getDataFolder().getPath() + System.getProperty("file.separator") + "arenas");
 
     public static ArrayList<File> fileList = new ArrayList<>();
+
     public static HashMap<String, BoundingBox> arenaBoxList = new HashMap<>();
     public static HashMap<BoundingBox, String> arenaBoxListR = new HashMap<>();
+
+    public static HashMap<String, ArrayList> spawnLocations = new HashMap<>();
+
+    public static ArrayList<Location> spawns = new ArrayList<>();
 
     // TODO: Find a way to load already created config files and get their data into memory
     public static void setup(String name){
