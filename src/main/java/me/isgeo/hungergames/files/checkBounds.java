@@ -1,11 +1,14 @@
 package me.isgeo.hungergames.files;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
 public class checkBounds {
+
+    static String HG = ChatColor.GRAY + "[" + ChatColor.YELLOW + "HG" + ChatColor.GRAY + "] ";
 
     public static boolean arenaContainLocation(String name, Location location) {
         double x = location.getX();
@@ -36,6 +39,7 @@ public class checkBounds {
                 }
             }
         }
+        player.sendMessage(HG + "No arena found!");
         return null;
     }
 //    public static boolean arenaOverlap(){

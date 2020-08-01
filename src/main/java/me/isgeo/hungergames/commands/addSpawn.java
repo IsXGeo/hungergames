@@ -6,7 +6,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-import static me.isgeo.hungergames.files.arenasConfig.*;
+import java.util.ArrayList;
+
+import static me.isgeo.hungergames.files.arenasConfig.save;
+import static me.isgeo.hungergames.files.arenasConfig.spawnLocations;
 
 public class addSpawn {
 
@@ -16,83 +19,56 @@ public class addSpawn {
         String HG = ChatColor.GRAY + "[" + ChatColor.YELLOW + "HG" + ChatColor.GRAY + "] ";
 
         Location loc = new Location(player.getLocation().getWorld(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch());
-        boolean onlyOnce = false;
-
-
+        ArrayList<Location> spawns = new ArrayList<>();
 
         String arena = checkBounds.getArenaName(player);
 
-        // TODO: Rewrite addSpawn.java to save locations in a separate array within the hashmap
         if(arena != null) {
-            for (String name : arenaBoxList.keySet()) {
-                if (name.equalsIgnoreCase(arena)) {
-                    if (checkBounds.arenaContainLocation(arena, loc)) {
+            if (checkBounds.arenaContainLocation(arena, loc)) {
+                if(spawnLocations.get(arena) != null) {
 
-                        System.out.println(CON + "First" + spawns);
+                    ArrayList<ArrayList> temp = new ArrayList<>();
+                    temp.add(spawnLocations.get(arena));
 
-                        spawns.add(loc);
+                    System.out.println(CON + temp);
 
-                        System.out.println(CON + "Second" + spawns);
+                    int size = spawnLocations.get(arena).size();
+                    String path = "spawns.".concat(Integer.toString(size));
 
-                        int size = spawns.size();
-
-                        String path = "spawns.".concat(Integer.toString(size));
-
-                        player.sendMessage(HG + "Added spawn " + ChatColor.YELLOW + size);
-
-                        arenasConfig.get().addDefault(path, loc);
-                        arenasConfig.get().options().copyDefaults(true);
-                        arenasConfig.save();
-
-                        System.out.println(CON + "First" + spawnLocations);
-                        spawnLocations.put(arena, spawns);
-                        System.out.println(CON + "Second" + spawnLocations);
-
-                        // Old System that doesn't work
-
-                        /**int size = 0;
-                        player.sendMessage(HG + ChatColor.YELLOW + arena + ChatColor.GRAY + " arena: " + ChatColor.GRAY + "Spawn position added");
-                        arenasConfig.spawnLocations.put(arena, loc);
-                        System.out.println(size);
-
-                        System.out.println(arenasConfig.spawnLocations);
-                        System.out.println(arenasConfig.spawnLocations.size());
-                        for (String value : arenasConfig.spawnLocations.keySet()) {
-                            if (value.equals(arena)) {
-                                System.out.println(arena + " | " + value + " | " + size);
-                                size++;
-                                System.out.println("[2]" + arena + " | " + value + " | " + size);
-                            }
+                    for(int i = 0; i < temp.size() ; i++){
+                        for(int j = 0; j < temp.get(i).size(); j++){
+                            System.out.println(CON + temp + " | " + j);
                         }
-                        String path = "spawns.".concat(Integer.toString(size));
-
-                        System.out.println("Added new spawn | " + path + " | " + ChatColor.YELLOW + arena);
-
-                        arenasConfig.get().addDefault(path, loc);
-                        arenasConfig.get().options().copyDefaults(true);
-                        arenasConfig.save();
-
-                        System.out.println(size);
-                        size++;
-
-                        System.out.println(size);
-                         **/
-                    } else {
-                        player.sendMessage(HG + "Spawn outside bounds of Arena");
                     }
-                } else {
-                    if (!onlyOnce) {
-                        player.sendMessage(HG + "Invalid arena");
-                    }
+
+                    player.sendMessage(HG + "Added spawn " + ChatColor.YELLOW + size);
+
+                    arenasConfig.get().addDefault(path, loc);
+
+                }else{
+                    int size = 1;
+                    String path = "spawns.".concat(Integer.toString(size));
+
+                    player.sendMessage(HG + "Added spawn " + ChatColor.YELLOW + size);
+
+                    spawns.add(loc);
+
+                    arenasConfig.get().addDefault(path, loc);
 
                 }
+                arenasConfig.get().options().copyDefaults(true);
+                save();
+                System.out.println(CON + "First" + spawnLocations);
+                spawnLocations.put(arena, spawns);
+                System.out.println(CON + "Second" + spawnLocations);
+
+            } else {
+                System.out.println(CON + "checkBounds arenaContainLocation was false");
             }
+
         }else{
-            player.sendMessage(HG + "Please create the arena before adding spawns!");
+            player.sendMessage(HG + "Spawn outside bounds of Arena");
         }
-
-
-
 
     }
 
